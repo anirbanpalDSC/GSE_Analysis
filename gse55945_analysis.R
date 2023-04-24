@@ -24,6 +24,10 @@ src_file_path <- paste(data_path,src_file, sep="")
 # Only for the first time
 # untar(src_file_path, exdir = data_path)
 
+# 2 Corrupted files removed
+# 1. GSM1348937_110807_HGU133_PLUS_2.0_MS_36A6
+# 2. GSM1348948_011508_HGU133_PLUS_2.0_MS_36D2
+
 # Load the CEL files
 list.celfiles(data_path)
 affyData <- ReadAffy(celfile.path = data_path)
@@ -33,3 +37,6 @@ eset.mas5 = mas5(affyData)
 exprSet.nologs = exprs(eset.mas5)
 # List the column (chip) names
 colnames(exprSet.nologs)
+
+# Create heatmap
+heatmap(exprSet.nologs,main="Normalized ME matrix for brain, liver, N=19")
